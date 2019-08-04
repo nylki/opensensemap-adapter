@@ -1,6 +1,6 @@
 'use strict';
 
-const WeatherAdapter = require('./opensensemap-adapter');
+const OpenSenseMapAdapter = require('./opensensemap-adapter');
 
 module.exports = (addonManager, manifest, errorCallback) => {
   const config = manifest.moziot.config;
@@ -10,12 +10,10 @@ module.exports = (addonManager, manifest, errorCallback) => {
   //   return;
   // }
 
-  console.log(config.boxes)
-
   if (!config.boxes || config.boxes.length === 0) {
     errorCallback(manifest.name, 'No sense boxes configured.');
     return;
   }
 
-  new WeatherAdapter(addonManager, manifest);
+  new OpenSenseMapAdapter(addonManager, manifest);
 };

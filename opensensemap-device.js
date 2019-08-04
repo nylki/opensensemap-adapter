@@ -1,5 +1,5 @@
 /**
- * Weather device type.
+ * Opensensemap device type.
  */
 'use strict';
 
@@ -9,7 +9,7 @@ const {Property, Device} = require('gateway-addon');
 
 class OpenSenseMapProperty extends Property {
   /**
-   * Weather property type.
+   * OpenSenseMap property type.
    *
    * @param {Object} device - Device this property belongs to
    * @param {string} name - Name of this property
@@ -24,13 +24,13 @@ class OpenSenseMapProperty extends Property {
 
 
 /**
- * Weather device type.
+ * OpenSenseMap device type.
  */
 class OpenSenseMapDevice extends Device {
   /**
    * Initialize the object.
    *
-   * @param {Object} adapter - WeatherAdapter instance
+   * @param {Object} adapter - OpenSenseMapAdapter instance
    * @param {string} box - Configured box
    * @param {number} pollInterval - Interval at which to poll provider
    */
@@ -120,12 +120,9 @@ class OpenSenseMapDevice extends Device {
   
 
   /**
-   * Update the weather data.
+   * Update the box data.
    */
   poll() {
-    
-    console.log('POLLING FOR DATA');
-    console.log('box id', this.box.boxId);
     fetch(`https://api.opensensemap.org/boxes/${this.box.boxId}/sensors`)
     .then(res => res.json())
     .then((json) => {
@@ -142,27 +139,8 @@ class OpenSenseMapDevice extends Device {
       }
     })
     
-    // const promise = this.provider.poll().then(() => {
-    //   const properties = [
-    //     'temperature',
-    //     'pressure',
-    //     'humidity',
-    //   ];
-    //   for (const property of properties) {
-    //     const value = this.provider[property]();
-    //     const prop = this.properties.get(property);
-    //
-    //     if (prop.value !== value) {
-    //       prop.setCachedValue(value);
-    //       this.notifyPropertyChanged(prop);
-    //     }
-    //   }
-    // }).catch((e) => {
-    //   console.error('Failed to poll weather provider:', e);
-    // });
-
     setTimeout(this.poll.bind(this), 3 * 60 * 1000);
-    return Promise.resolve('test');
+    return Promise.resolve();
   }
 }
 

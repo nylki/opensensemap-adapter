@@ -14,14 +14,14 @@
     "adapter",
     "example"
   ],
-  "homepage": "https://github.com/mozilla-iot/example-adapter",
+  "homepage": "https://github.com/nylki/opensensemap-adapter",
   "license": "MPL-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla-iot/example-adapter.git"
+    "url": "https://github.com/nylki/opensensemap-adapter.git"
   },
   "bugs": {
-    "url": "https://github.com/mozilla-iot/example-adapter/issues"
+    "url": "https://github.com/nylki/opensensemap-adapter/issues"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.2",
