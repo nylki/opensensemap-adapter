@@ -1,0 +1,83 @@
+{
+  "name": "opensensemap-adapter",
+  "display_name": "OpenSenseMap",
+  "version": "0.0.1",
+  "description": "OpenSenseMap adapter add-on for Mozilla WebThings Gateway",
+  "author": "Tom Brewe",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "mozilla",
+    "iot",
+    "adapter",
+    "example"
+  ],
+  "homepage": "https://github.com/mozilla-iot/example-adapter",
+  "license": "MPL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mozilla-iot/example-adapter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mozilla-iot/example-adapter/issues"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1"
+  },
+  "files": [
+    "LICENSE",
+    "SHA256SUMS",
+    "opensensemap-adapter.js",
+    "index.js"
+  ],
+  "moziot": {
+    "api": {
+      "min": 2,
+      "max": 2
+    },
+    "plugin": true,
+    "exec": "{nodeLoader} {path}",
+    "config": {
+      "boxes": [],
+      "pollInterval": 60
+    },
+    "schema": {
+      "type": "object",
+      "required": [
+        "boxes",
+        "pollInterval"
+      ],
+      "properties": {
+        "boxes": {
+          "description": "List of boxes",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "boxId"
+            ],
+            "properties": {
+              "name": {
+                "description": "Name of box",
+                "type": "string"
+              },
+              "boxId": {
+                "description": "ID of the selected box",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "pollInterval": {
+          "description": "Interval in minutes at which to poll the provider",
+          "type": "integer",
+          "minimum": 10
+        }
+      }
+    }
+  }
+}
